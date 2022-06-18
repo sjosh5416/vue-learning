@@ -42,6 +42,11 @@
           this.status = !this.status;
         },
       },
+      watch: {
+        status(val) {
+          console.log(val);
+        },
+      },
       computed: {
         className() {
           if (this.status) {
