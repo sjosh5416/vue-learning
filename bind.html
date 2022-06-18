@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="app">
+        <div class="row">
+          <img v-bind:src="imagePath" v-bind:alt="imageAlt" />
+        </div>
+        <div v-bind:class="className">123</div>
+        <button v-on:click="changeStatus">changeStatus</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          status: false,
+          imagePath:
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXfCjpTEG3huHeTzhacMKSBqk6frcEGdHo2Eg9IK54A&s",
+          imageAlt: "圖片不見了",
+        };
+      },
+      methods: {
+        changeStatus() {
+          this.status = !this.status;
+        },
+      },
+      computed: {
+        className() {
+          if (this.status) {
+            return "div-red";
+          }
+          return "div-blue";
+        },
+      },
+    }).mount("#app");
+  </script>
+  <style>
+    .div-red {
+      background: red;
+    }
+    .div-blue {
+      background: blue;
+    }
+  </style>
+</html>
